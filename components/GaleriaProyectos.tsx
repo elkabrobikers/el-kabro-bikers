@@ -28,7 +28,7 @@ export default function GaleriaProyectos() {
   };
 
   return (
-    <section className="py-20 bg-black text-white px-6 w-full overflow-hidden">
+    <section id="proyectos" className="py-20 bg-black text-white px-6 w-full overflow-hidden">
       <h2 className="text-4xl font-bold mb-8 text-center uppercase tracking-widest text-purple-600">Proyectos</h2>
       
       <div className="flex flex-wrap justify-center gap-4 mb-12">
