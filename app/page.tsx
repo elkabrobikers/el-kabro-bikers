@@ -1,65 +1,75 @@
-import Image from "next/image";
+'use client';
+import GaleriaProyectos from '@/components/GaleriaProyectos';
+import VideoProcesos from '@/components/VideoProcesos';
+import TikTok from '@/components/TikTok';
+import Contacto from '@/components/Contacto'; // 1. Importamos el nuevo componente
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main>
+      {/* Tu diseño original */}
+      <div className="relative min-h-screen bg-black text-white p-6 md:p-12">
+        {/* Fondo con imagen */}
+        <div 
+          className="absolute inset-0 bg-[url('/tu-moto-fondo.jpg')] bg-cover bg-center opacity-40" 
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        
+        {/* Capa oscura para que el texto resalte */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
+
+        <div className="relative z-10 max-w-7xl mx-auto pt-20">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            
+            {/* Lado Izquierdo: Título y texto */}
+            <div>
+              <p className="text-purple-500 font-bold tracking-widest mb-4 uppercase">Taller Especializado · Desde 2015</p>
+              <h1 className="text-6xl md:text-8xl font-black leading-none mb-6">
+                RECONSTRUIMOS <br />
+                <span className="text-purple-600">CARENADOS</span> <br />
+                COMO <span className="text-purple-600">NADIE</span> <br />
+                MÁS
+              </h1>
+              <p className="text-gray-400 mb-8 max-w-md">Especialistas en reconstrucción, pintura y restauración de carenados de motocicleta. Devolvemos la vida a tu moto con acabados de competición.</p>
+              
+              <div className="flex gap-4">
+                <button className="bg-purple-600 px-8 py-3 font-bold hover:bg-purple-700">SOLICITAR COTIZACIÓN</button>
+                <button className="border border-white px-8 py-3 font-bold hover:bg-white hover:text-black">VER PROYECTOS</button>
+              </div>
+            </div>
+
+            {/* Lado Derecho: Bloques de Servicios */}
+            <div className="space-y-4">
+              {[
+                { titulo: "RECONSTRUCCIÓN TOTAL", desc: "Desde grietas hasta rotura completa..." },
+                { titulo: "PINTURA PROFESIONAL", desc: "Acabados en colores de fábrica..." },
+                { titulo: "ENTREGA RÁPIDA", desc: "Tiempos de entrega competitivos..." }
+              ].map((item, i) => (
+                <div key={i} className="bg-white/5 p-6 border-l-4 border-purple-600 hover:bg-white/10 transition">
+                  <h3 className="font-bold text-lg">{item.titulo}</h3>
+                  <p className="text-gray-400 text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+
+          {/* Estadísticas inferiores */}
+          <div className="mt-20 flex gap-12 text-purple-500">
+            <div><h2 className="text-4xl font-bold text-white">+500</h2><p>CARENADOS RESTAURADOS</p></div>
+            <div><h2 className="text-4xl font-bold text-white">9 años</h2><p>DE EXPERIENCIA</p></div>
+            <div><h2 className="text-4xl font-bold text-white">100%</h2><p>GARANTÍA</p></div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+      
+
+      {/* Secciones de contenido */}
+      <GaleriaProyectos />
+      <VideoProcesos />
+      <TikTok />
+      
+      {/* 2. Aquí está tu nueva sección de Contacto */}
+      <Contacto />
+    </main>
   );
 }
