@@ -6,8 +6,8 @@ export default function GaleriaProyectos() {
   const [proyectos, setProyectos] = useState<any[]>([]);
   const [filtrados, setFiltrados] = useState<any[]>([]);
   const [marcaActiva, setMarcaActiva] = useState('TODOS');
-  const [pSel, setPSel] = useState<any | null>(null); // Proyecto seleccionado para el modal
-  const [imgGrande, setImgGrande] = useState<string | null>(null); // Imagen para pantalla completa
+  const [pSel, setPSel] = useState<any | null>(null);
+  const [imgGrande, setImgGrande] = useState<string | null>(null);
 
   const marcas = ['TODOS', 'KAWASAKI', 'SUZUKI', 'YAMAHA', 'HONDA', 'OTRA MARCA'];
 
@@ -28,7 +28,7 @@ export default function GaleriaProyectos() {
   };
 
   return (
-    <section className="py-20 bg-black text-white px-6">
+    <section className="py-20 bg-black text-white px-6 w-full overflow-hidden">
       <h2 className="text-4xl font-bold mb-8 text-center uppercase tracking-widest text-purple-600">Proyectos</h2>
       
       <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -39,11 +39,11 @@ export default function GaleriaProyectos() {
         ))}
       </div>
       
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {filtrados.map((p) => {
           const antes = JSON.parse(p.url_antes || '[]');
           return (
-            <div key={p.id} className="cursor-pointer group" onClick={() => setPSel(p)}>
+            <div key={p.id} className="cursor-pointer group w-full" onClick={() => setPSel(p)}>
               <img src={antes[0]} className="w-full h-80 object-cover rounded-xl border border-gray-800 group-hover:scale-105 transition" />
               <h3 className="mt-4 text-xl font-bold uppercase">{p.titulo}</h3>
             </div>
@@ -51,16 +51,14 @@ export default function GaleriaProyectos() {
         })}
       </div>
 
-      {/* Modal de Detalles */}
       {pSel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm" onClick={() => setPSel(null)}>
-          <div className="bg-[#111] w-full max-w-4xl rounded-2xl border border-gray-800 p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-[#111] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-gray-800 p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-purple-500 uppercase">{pSel.titulo}</h2>
               <button onClick={() => setPSel(null)} className="text-2xl font-bold hover:text-red-500">✕</button>
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {['ANTES', 'DESPUÉS'].map((tipo) => (
                 <div key={tipo}>
                   <h4 className="text-gray-400 mb-2 font-bold">{tipo}</h4>
@@ -76,7 +74,6 @@ export default function GaleriaProyectos() {
         </div>
       )}
 
-      {/* Pantalla Completa para fotos */}
       {imgGrande && (
         <div className="fixed inset-0 z-[60] bg-black/98 flex items-center justify-center p-4" onClick={() => setImgGrande(null)}>
           <img src={imgGrande} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />

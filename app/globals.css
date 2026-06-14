@@ -19,6 +19,11 @@
   }
 }
 
+/* Esto fuerza a que nada sea más ancho que la pantalla y evita el scroll horizontal */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
 body {
   background: var(--background);
   color: var(--foreground);
